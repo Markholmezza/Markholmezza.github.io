@@ -1,0 +1,15 @@
+---
+title: "Ziang Zhang"
+---
+
+Hi! I'm Ziang Zhang, an M.S. student in Biostatistics at Columbia University (expected May 2028). Before Columbia, I earned a B.S. in Applied Mathematics and Biology from Emory University.
+
+I'm interested in health data science: building data pipelines and validation checks that make analyses reproducible, and using statistical models to answer clinical and public health questions.
+
+### Selected projects
+
+* [Travel Atlas](https://ziang-atlas.pages.dev): an interactive map of places I have visited, built on a validated data pipeline ([GitHub](https://github.com/Markholmezza/travel-atlas))
+* [Coronary heart disease risk model](https://github.com/Markholmezza/nhanes-chd): a data audit and survey-weighted revalidation using NHANES
+* [Predator odor and squirrel foraging](https://github.com/Markholmezza/squirrel-foraging-survival-analysis): a time-to-event analysis of a blocked field experiment
+
+Outside of statistics, I play oboe and English horn.
