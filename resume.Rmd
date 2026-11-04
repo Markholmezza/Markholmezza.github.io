@@ -1,0 +1,55 @@
+---
+title: "Resume"
+---
+
+### Education
+
+**Columbia University**, New York, NY
+*M.S. in Biostatistics*, expected 05/2028
+Relevant coursework: Biostatistical Methods; Data Science; Probability; Multimodal Health Data Management Agents
+
+**Emory University, College of Arts and Sciences**, Atlanta, GA
+*B.S. in Applied Mathematics and Biology (Double Major)*, 08/2023 – 05/2026
+Relevant coursework: Computer Science I and II; Data Structures and Algorithms; Machine Learning; Linear Algebra; Database Systems; Numerical Analysis; Mathematical Statistics I and II; Applied Regression Analysis; Bioinformatics
+
+### Experience
+
+**Institute of Automation, Chinese Academy of Sciences**, Beijing, China
+*Algorithm Intern, Intelligent Systems and Engineering Research Center*, 06/2024 – 08/2024
+
+* Raised proofreading accuracy from about 60% to 80% by fine-tuning Zidong Taichu's multimodal LLM, optimizing prompts, and building FAISS/Milvus RAG pipelines; benchmarked several open-source LLMs on the same review task.
+* Maintained a SQL-backed proofreading database for grammar, spelling, and sensitive-term checks, with real-time Linux queries over tens of thousands of entries; revised it with the client and helped install and debug it on-site in Guangzhou.
+
+### Selected projects
+
+**Travel Atlas: Validated Data Pipeline, SQL Edit Checks, and Interactive Map**
+*Independent project*, 10/2026 – present ([live site](https://ziang-atlas.pages.dev) | [GitHub](https://github.com/Markholmezza/travel-atlas))
+
+* Directed AI-assisted development (Claude Code) of a Leaflet map of 49 places in 19 countries, with Python pipelines that turn flight logs, GPS tracks, and Word/PDF articles into CSV and GeoJSON, deployed through Cloudflare Pages.
+* Wrote a 55-rule data validation plan modeled on clinical edit checks, each with an ID, severity, rationale, and revision history, and enforced it in Python file checks, SQLite constraints, and SQL cross-record queries with recursive CTEs.
+* Gated deployment on validation: any error fails the Cloudflare Pages build so nothing is published; 103 automated tests cover one deliberately broken dataset per rule, and the checks caught 7 flight records that violated the data dictionary.
+
+**Coronary Heart Disease Risk Model: Data Audit and Survey-Weighted Revalidation (NHANES)**
+*Independent project based on an Emory project*, 09/2025 – present ([GitHub](https://github.com/Markholmezza/nhanes-chd))
+
+* Found that a one-to-many join on participant ID turned 5,751 NHANES adults into 15,103 rows, leaking 75% of test rows into training; fixing the pipeline cut random-forest AUC from 0.999 to 0.86, matching a plain logistic regression.
+* Built a three-page interactive Power BI report covering 20,469 adults in three NHANES cycles, with DAX measures for survey-weighted prevalence and a what-if threshold slider that updates the sensitivity, specificity, and the share flagged.
+* Framed the model for care-management outreach: contacting the riskiest 10% of adults would reach 50% of CHD cases (5.0 times the random rate) and contacting 30% would reach 86%, with the capacity trade-offs shown per 10,000 adults.
+* Evaluated models along TRIPOD with bootstrap CIs, calibration, and decision curves; the paper's PSO-ANN reached AUC 0.836, significantly below logistic regression (0.859), and class weighting inflated the mean predicted risk sevenfold.
+* Double-programmed the 2013–2014 survey-weighted prevalence and complete-case odds ratios in Python and R (`survey`), matching to within 0.0005; documented the data lineage, methods, and limitations in a reproducible GitHub repository.
+
+**Blocked Dose-Response Field Experiment: Predator Odor and Squirrel Foraging (Time-to-Event)**
+*Emory University project*, 09/2025 – 12/2025 ([GitHub](https://github.com/Markholmezza/squirrel-foraging-survival-analysis))
+
+* Designed a blocked dose-response field experiment after a pilot study (4 blocks × 4 urine doses, 160 walnuts, 10 checks over 123 hours); modeled the right-censored removal times with Kaplan–Meier curves and adjusted log-rank tests in R.
+* Added a post hoc block-stratified Cox model with station-clustered SEs: the removal hazard at the 100% dose was 0.15 (95% CI 0.07–0.32) of control, with a trend hazard ratio of 0.56 per dose step and no violation of proportional hazards.
+
+### Skills and interests
+
+* **Programming:** Python, SQL, Java, R, SAS, MATLAB
+* **Tools:** Git/GitHub, Linux, SQLite, Jupyter, Power BI
+* **Engineering:** Data pipelines, data validation, automated testing, build gating, predictive modeling
+* **AI tools:** Claude Code, LangGraph, RAG, scikit-learn
+* **Cloud:** Google Cloud SQL (coursework), Cloudflare Pages
+* **Languages:** Mandarin (native), English, Latin (basic)
+* **Interests:** Oboe and English horn; orchestral performance
