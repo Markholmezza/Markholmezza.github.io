@@ -70,9 +70,11 @@ noaa_df |>
   filter(year == 2010) |>
   slice_sample(n = 3000) |>
   mutate(
-    season =
-      if_else(month %in% month.abb[5:10], "Warm months (May-Oct)", "Cold months (Nov-Apr)") |>
-      fct_relevel("Cold months (Nov-Apr)"),
+    season = if_else(
+      month %in% month.abb[5:10],
+      "Warm months (May-Oct)", "Cold months (Nov-Apr)"
+    ),
+    season = fct_relevel(season, "Cold months (Nov-Apr)"),
     text_label = str_c(
       "Station: ", id, "<br>Date: ", date,
       "<br>Max: ", tmax, " °C<br>Min: ", tmin, " °C"
