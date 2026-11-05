@@ -6,6 +6,11 @@ Hi! I'm Ziang Zhang, an M.S. student in Biostatistics at Columbia University (ex
 
 I'm interested in health data science: building data pipelines and validation checks that make analyses reproducible, and using statistical models to answer clinical and public health questions.
 
+### On this site
+
+* [Resume](resume.html): my education, experience, and projects
+* [Dashboard](dashboard.html): an interactive look at daily temperatures from NOAA weather stations in New York, built with `flexdashboard` and `plotly`
+
 ### Selected projects
 
 * [Travel Atlas](https://ziang-atlas.pages.dev): an interactive map of places I have visited, built on a validated data pipeline ([GitHub](https://github.com/Markholmezza/travel-atlas))
