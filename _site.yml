@@ -11,10 +11,6 @@ navbar:
       href: dashboard.html
     - text: "Shiny App"
       href: shiny.html
-    - text: "Links"
-      menu:
-        - text: "Columbia University Orchestra"
-          href: https://cuo.music.columbia.edu/
   right:
     - icon: fa-envelope fa-lg
       href: mailto:<zz3593@cumc.columbia.edu>

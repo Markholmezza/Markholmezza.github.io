@@ -19,3 +19,5 @@ I'm interested in health data science: building data pipelines and validation ch
 * [Predator odor and squirrel foraging](https://github.com/Markholmezza/squirrel-foraging-survival-analysis): a time-to-event analysis of a blocked field experiment
 
 Outside of statistics, I play oboe and English horn.
+
+* [Columbia University Orchestra](https://cuo.music.columbia.edu/){target="_blank"}
