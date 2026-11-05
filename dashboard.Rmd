@@ -1,0 +1,130 @@
+---
+title: "NY NOAA Temperature Dashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: flatly
+    source_code: embed
+    navbar:
+      - { title: "Home", href: "index.html", align: left }
+      - { title: "Resume", href: "resume.html", align: left }
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+
+set.seed(8105)
+
+data("ny_noaa")
+
+noaa_df =
+  ny_noaa |>
+  mutate(
+    tmax = as.numeric(tmax) / 10,
+    tmin = as.numeric(tmin) / 10,
+    year = year(date),
+    month = factor(month.abb[month(date)], levels = month.abb)
+  ) |>
+  filter(
+    !is.na(tmax), !is.na(tmin),
+    tmin <= tmax, tmax <= 42, tmin >= -47
+  ) |>
+  select(id, date, year, month, tmax, tmin)
+```
+
+The raw data has `r format(nrow(ny_noaa), big.mark = ",")` station-days. I converted temperatures from tenths of degrees C to degrees C, kept station-days with both a maximum and a minimum temperature, and dropped `r format(sum(!is.na(ny_noaa$tmax) & !is.na(ny_noaa$tmin)) - nrow(noaa_df), big.mark = ",")` implausible records (minimum above maximum, or outside New York's record range of about -47 to 42 °C).
+
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Daily maximum temperature by month, 2010
+
+```{r}
+noaa_df |>
+  filter(year == 2010) |>
+  plot_ly(
+    x = ~month, y = ~tmax, type = "box",
+    fillcolor = "rgba(42, 120, 214, 0.25)",
+    line = list(color = "#2a78d6", width = 2),
+    marker = list(color = "#2a78d6", size = 4, opacity = 0.4)
+  ) |>
+  layout(
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Daily maximum temperature (°C)")
+  )
+```
+
+> All `r format(sum(noaa_df$year == 2010), big.mark = ",")` station-days from 2010 with valid temperatures.
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Daily minimum vs. maximum temperature, 2010
+
+```{r}
+noaa_df |>
+  filter(year == 2010) |>
+  slice_sample(n = 3000) |>
+  mutate(
+    season =
+      if_else(month %in% month.abb[5:10], "Warm months (May-Oct)", "Cold months (Nov-Apr)") |>
+      fct_relevel("Cold months (Nov-Apr)"),
+    text_label = str_c(
+      "Station: ", id, "<br>Date: ", date,
+      "<br>Max: ", tmax, " °C<br>Min: ", tmin, " °C"
+    )
+  ) |>
+  plot_ly(
+    x = ~tmin, y = ~tmax, color = ~season, colors = c("#2a78d6", "#eb6834"),
+    type = "scatter", mode = "markers",
+    marker = list(size = 6, opacity = 0.5),
+    text = ~text_label, hoverinfo = "text"
+  ) |>
+  layout(
+    xaxis = list(title = "Daily minimum temperature (°C)"),
+    yaxis = list(title = "Daily maximum temperature (°C)"),
+    legend = list(orientation = "h", x = 0, y = 1.02, yanchor = "bottom")
+  )
+```
+
+> Random sample of 3,000 station-days from 2010.
+
+### Mean daily maximum temperature in January and July, 1981-2010
+
+```{r}
+jan_jul_df =
+  noaa_df |>
+  filter(month %in% c("Jan", "Jul")) |>
+  group_by(year, month) |>
+  summarize(
+    mean_tmax = mean(tmax),
+    n_stations = n_distinct(id),
+    .groups = "drop"
+  ) |>
+  mutate(
+    month = fct_recode(fct_drop(month), January = "Jan", July = "Jul"),
+    text_label = str_c(
+      month, " ", year, "<br>Mean max: ", round(mean_tmax, 1),
+      " °C<br>Stations: ", n_stations
+    )
+  )
+
+jan_jul_df |>
+  plot_ly(
+    x = ~year, y = ~mean_tmax, color = ~month, colors = c("#2a78d6", "#eb6834"),
+    type = "scatter", mode = "lines+markers",
+    line = list(width = 2), marker = list(size = 8),
+    text = ~text_label, hoverinfo = "text"
+  ) |>
+  layout(
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Mean daily max temperature (°C)"),
+    legend = list(orientation = "h", x = 0, y = 1.02, yanchor = "bottom")
+  )
+```
+
+> Averages over all stations reporting in that month. January varies much more from year to year than July.
