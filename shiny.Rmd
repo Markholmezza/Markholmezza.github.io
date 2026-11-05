@@ -1,0 +1,15 @@
+---
+title: "NHANES CHD Explorer"
+---
+
+An interactive R Shiny companion to my [NHANES coronary heart disease project](https://github.com/Markholmezza/nhanes-chd), using 5,751 adults from CDC NHANES 2013–2014, 232 of whom reported coronary heart disease (CHD).
+
+* **Outreach planner:** choose an outreach capacity or a risk cutoff and see the adults flagged, cases reached, PPV, and lift, computed from 5-fold out-of-fold predictions.
+* **Population prevalence:** survey-weighted CHD prevalence with 95% CIs (R `survey`) for any subgroup.
+* **Data quality checks:** eleven edit checks on the analysis file, with a drill-down to the flagged records.
+
+NHANES is cross-sectional and CHD is a self-reported past diagnosis, so the outreach view illustrates a capacity-based decision framework, not a screening tool.
+
+The app is hosted on shinyapps.io and may take a few seconds to wake up. You can also [open it in a new tab](https://ziang-zhang.shinyapps.io/nhanes-chd-explorer/){target="_blank"}.
+
+<iframe src="https://ziang-zhang.shinyapps.io/nhanes-chd-explorer/" width="100%" height="850" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>

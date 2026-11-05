@@ -10,6 +10,7 @@ I'm interested in health data science: building data pipelines and validation ch
 
 * [Resume](resume.html): my education, experience, and projects
 * [Dashboard](dashboard.html): an interactive look at daily temperatures from NOAA weather stations in New York, built with `flexdashboard` and `plotly`
+* [Shiny App](shiny.html): an R Shiny explorer for coronary heart disease risk and prevalence in NHANES
 
 ### Selected projects
 

@@ -30,7 +30,7 @@ Relevant coursework: Computer Science I and II; Data Structures and Algorithms; 
 * Gated deployment on validation: any error fails the Cloudflare Pages build so nothing is published; 103 automated tests cover one deliberately broken dataset per rule, and the checks caught 7 flight records that violated the data dictionary.
 
 **Coronary Heart Disease Risk Model: Data Audit and Survey-Weighted Revalidation (NHANES)**\
-*Independent project based on an Emory project*, 09/2025 – present ([GitHub](https://github.com/Markholmezza/nhanes-chd))
+*Independent project based on an Emory project*, 09/2025 – present ([GitHub](https://github.com/Markholmezza/nhanes-chd) | [Shiny app](shiny.html))
 
 * Found that a one-to-many join on participant ID turned 5,751 NHANES adults into 15,103 rows, leaking 75% of test rows into training; fixing the pipeline cut random-forest AUC from 0.999 to 0.86, matching a plain logistic regression.
 * Built a three-page interactive Power BI report covering 20,469 adults in three NHANES cycles, with DAX measures for survey-weighted prevalence and a what-if threshold slider that updates the sensitivity, specificity, and the share flagged.
